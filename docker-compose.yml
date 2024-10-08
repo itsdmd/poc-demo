@@ -1,0 +1,40 @@
+version: '3'
+services:
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "63000:63000"
+    environment:
+      - VITE_API_URL=http://server:63000
+      - MYSQL_HOST=db
+      - MYSQL_PORT=3306
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=pTEMuz5Ep7
+      - MYSQL_DATABASE=playground
+      - FRONTEND_URL=http://frontend:63001
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "63001:80"
+    environment:
+      - VITE_API_URL=http://server:63000
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: pTEMuz5Ep7
+      MYSQL_DATABASE: playground
+    ports:
+      - "33306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
