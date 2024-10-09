@@ -5,4 +5,4 @@
     -   Small bug: Requests' status unable to be updated remotely
 -   Authentication using JWT
 
-![](demo.mp4)
+https://github.com/user-attachments/assets/ec66edfb-c7b1-43bf-ba53-1564e88deb81
